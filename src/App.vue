@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <app-header :quoteCount="quotes.length" :maxQuotes="maxQuotes" ></app-header>
-        <app-new-quote @QuoteWasAdded = "AddQuote"></app-new-quote>
-        <app-quote-grid :quotes="quotes"></app-quote-grid>
+        <app-new-quote @QuoteWasAdded = "addQuote"></app-new-quote>
+        <app-quote-grid :quotes="quotes" @quoteWasDeleted="deleteQuote"></app-quote-grid>
     </div>
 </template>
 
@@ -28,12 +28,16 @@
             'app-header': Header
         },
         methods:{
-            AddQuote(quote){
+            addQuote(quote){
                 if(this.quotes.length >= 10)
                 {
                     return alert('No room for new quotes. Delete some of them to free space');
                 }
                 this.quotes.push(quote);
+            }
+            ,
+            deleteQuote(index){
+                this.quotes.splice(index, 1);
             }
         }
     }
