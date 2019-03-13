@@ -24,7 +24,7 @@
        },
        methods:{
            createNew(){
-               
+               this.$emit('QuoteWasAdded', this.quote);
            }
        }
     }
